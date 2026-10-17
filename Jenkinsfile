@@ -23,8 +23,9 @@ pipeline {
                     python3 -m venv .venv
                     . .venv/bin/activate
                     pip install -r requirements.txt
-                    python -m pytest
+                    python -m pytest --junitxml=test-results.xml
                 '''
+                junit 'test-results.xml'
             }
         }
 
