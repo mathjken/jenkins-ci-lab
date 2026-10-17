@@ -11,6 +11,7 @@ This project demonstrates a Continuous Integration (CI) pipeline using Jenkins, 
 - Python — application code
 - pytest — automated testing
 - Git and GitHub — source control
+- JUnit XML — test report format
 - Poll SCM — periodic repository change detection
 
 ## Pipeline Stages
@@ -30,15 +31,30 @@ The test suite verifies:
 - Adding two positive numbers.
 - Adding two negative numbers.
 
+## Test Report
+
+pytest generates the JUnit XML report:
+
+`test-results.xml`
+
+Jenkins publishes the report using:
+
+```groovy
+junit 'test-results.xml'
+
 ## Build Artifact
 
 The pipeline archives:
 
 `dist/jenkins-ci-lab.zip`
 
+The artifact can be downloaded from the Jenkins build page.
+Note: The current Deploy stage archives the ZIP in Jenkins; it does not deploy the application to a live environment.
+
+
 ## Jenkins Environment
 
-Jenkins runs in Docker using a custom image defined in `Dockerfile.jenkins`. The image includes Python, pip, virtual-environment support, and zip.
+Jenkins runs in Docker using a custom image defined in `Dockerfile.jenkins`. The image includes Python, pip, virtual-environment support, and zip.Jenkins configuration and job data are persisted in the jenkins_home Docker volume.
 
 ## Skills Demonstrated
 
@@ -47,12 +63,13 @@ Jenkins runs in Docker using a custom image defined in `Dockerfile.jenkins`. The
 - Automated build triggers using Poll SCM
 - Python virtual environments and dependency management
 - Automated testing with pytest
-- Artifact archiving
+- JUnit test report publishing
+- Build artifact archiving
 - Docker image customization
 
 ## Future Improvements
 
-- Publish test reports in Jenkins.
 - Add code quality checks.
+- Run tests before packaging the release artifact.
 - Introduce a deployment stage to a test environment.
 - Explore GitHub webhooks using a securely accessible Jenkins endpoint.
