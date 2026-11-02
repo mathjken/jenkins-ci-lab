@@ -41,6 +41,7 @@ Jenkins publishes the report using:
 
 ```groovy
 junit 'test-results.xml'
+```
 
 ## Build Artifact
 
@@ -75,7 +76,56 @@ Jenkins runs in Docker using a custom image defined in `Dockerfile.jenkins`. The
 - Explore GitHub webhooks using a securely accessible Jenkins endpoint.
 
 
-## GitHub Actions Pull Request Test
+## GitHub Actions CI Pipeline
 
-This change verifies that the GitHub Actions CI workflow
-runs automatically when a pull request targets the main branch.
+This repository also uses GitHub Actions to automate Python testing.
+
+### Workflow Configuration
+
+The workflow is defined in:
+
+`.github/workflows/ci.yml`
+
+### Workflow Triggers
+
+The pipeline runs automatically when:
+
+- Code is pushed to the `main` branch.
+- A pull request targets the `main` branch.
+
+### Workflow Steps
+
+1. **Checkout:** Retrieves the repository source code.
+2. **Set up Python:** Configures Python 3.13.
+3. **Dependency caching:** Caches pip dependencies to speed up subsequent runs.
+4. **Install dependencies:** Installs packages from `requirements.txt`.
+5. **Run tests:** Executes automated tests using pytest and generates a JUnit XML report.
+
+### Execution Environment
+
+- Platform: GitHub-hosted Ubuntu runner.
+- Python: 3.13.
+- Testing framework: pytest 8.4.2.
+- GitHub Actions: checkout v5 and setup-python v6.
+
+### Test Results
+
+The workflow successfully executed both automated tests:
+
+- `test_add_numbers`
+- `test_add_negative_numbers`
+
+Result: 2 tests passed.
+
+Both push and pull-request triggers were tested successfully.
+
+### Skills Demonstrated
+
+- GitHub Actions workflow configuration using YAML.
+- CI automation using push and pull-request events.
+- GitHub-hosted runners.
+- Python environment configuration.
+- Dependency caching.
+- Automated testing with pytest.
+- Git branching and pull-request workflows.
+- CI execution monitoring and troubleshooting.
