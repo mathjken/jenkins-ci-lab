@@ -1,8 +1,10 @@
 # Jenkins CI Pipeline Lab
+[![Python CI Pipeline](https://github.com/mathjken/jenkins-ci-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/mathjken/jenkins-ci-lab/actions/workflows/ci.yml)
 
 ## Overview
 
 This project demonstrates a Continuous Integration (CI) pipeline using Jenkins, GitHub, Python, and pytest. Jenkins checks the GitHub repository for changes, runs automated tests, packages the application, and archives the build artifact.
+
 
 ## Technologies
 
@@ -52,7 +54,6 @@ The pipeline archives:
 The artifact can be downloaded from the Jenkins build page.
 Note: The current Deploy stage archives the ZIP in Jenkins; it does not deploy the application to a live environment.
 
-
 ## Jenkins Environment
 
 Jenkins runs in Docker using a custom image defined in `Dockerfile.jenkins`. The image includes Python, pip, virtual-environment support, and zip.Jenkins configuration and job data are persisted in the jenkins_home Docker volume.
@@ -74,7 +75,6 @@ Jenkins runs in Docker using a custom image defined in `Dockerfile.jenkins`. The
 - Run tests before packaging the release artifact.
 - Introduce a deployment stage to a test environment.
 - Explore GitHub webhooks using a securely accessible Jenkins endpoint.
-
 
 ## GitHub Actions CI Pipeline
 
