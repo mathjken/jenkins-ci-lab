@@ -73,3 +73,9 @@ Jenkins runs in Docker using a custom image defined in `Dockerfile.jenkins`. The
 - Run tests before packaging the release artifact.
 - Introduce a deployment stage to a test environment.
 - Explore GitHub webhooks using a securely accessible Jenkins endpoint.
+
+
+## GitHub Actions Pull Request Test
+
+This change verifies that the GitHub Actions CI workflow
+runs automatically when a pull request targets the main branch.
